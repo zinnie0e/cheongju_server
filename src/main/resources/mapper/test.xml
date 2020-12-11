@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guruiot.kiosk.mapper.TestMapper">
+
+	<select id="testMultiSelectAll" resultType="testVO">
+		SELECT *
+		FROM kiosk_cheongju.test
+		UNION
+		SELECT *
+		FROM test.test
+	</select>
+	
+	<select id="testSelectAll" resultType="testVO">
+		SELECT *
+		FROM test
+	</select>
+	
+	<select id="testSelectMax" resultType="Integer">
+		SELECT MAX(test.index)
+		FROM test
+	</select>
+	
+	<insert id="testInsert" parameterType="testVO">
+		INSERT INTO test (
+			test.index, data, log
+		) VALUES (
+			#{index}, #{data}, now()
+		)
+	</insert>
+	
+	<update id="testUpdateData" parameterType="testVO">
+		UPDATE test SET
+			data = #{data}
+		WHERE test.index = #{index}
+	</update>
+	
+	<delete id="testDelete" parameterType="testVO">
+		DELETE FROM test
+		WHERE test.index = #{index}
+	</delete>
+</mapper>
