@@ -1,0 +1,38 @@
+package com.guruiot.kiosk.vo;
+
+import org.apache.ibatis.type.Alias;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Alias("eventVO")
+@JsonInclude(Include.NON_NULL)
+public class EventVO {
+	//변수
+	private String language;
+	
+	//공통컬럼
+	private int uid;
+	private String log;
+	
+	//event_XX
+	private int found_cate;
+	private int event_cate;
+	private String title;
+	private int start_time;
+	private int end_time;
+	private String place;
+	private String manager;
+	private String tel;
+	private String poster;
+	
+	//event_detail_XX
+	private String detail_title;
+	private String detail_body;
+	private String event_uid;
+}
