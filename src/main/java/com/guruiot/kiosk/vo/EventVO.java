@@ -24,8 +24,10 @@ public class EventVO {
 	private int found_cate;
 	private int event_cate;
 	private String title;
-	private int start_time;
-	private int end_time;
+	private String start_date;
+	private String end_date;
+	private String start_time;
+	private String end_time;
 	private String place;
 	private String manager;
 	private String tel;

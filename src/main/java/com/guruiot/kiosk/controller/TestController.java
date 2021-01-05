@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.guruiot.kiosk.service.TestService;
 import com.guruiot.kiosk.vo.TestVO;
 
-@CrossOrigin(origins = "http://192.168.1.76:8088")
+@CrossOrigin(origins = "*")
 @RestController
 public class TestController {
 	@Resource
@@ -32,6 +32,11 @@ public class TestController {
 		model.addAttribute("testList", testList);
 		
 		return testList;
+	}
+	
+	@RequestMapping(value="/testt", method=RequestMethod.GET)
+	public boolean testt() throws Exception {		
+		return true;
 	}
 	
 	@RequestMapping(value="/test/multi", method=RequestMethod.GET)
