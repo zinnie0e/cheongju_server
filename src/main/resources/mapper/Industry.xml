@@ -4,7 +4,7 @@
 
 	<select id="selIndustryList" resultType="IndustryVO">
 		SELECT *
-		FROM company_kr;
+		FROM company_${language};
 	</select>
 
 </mapper>

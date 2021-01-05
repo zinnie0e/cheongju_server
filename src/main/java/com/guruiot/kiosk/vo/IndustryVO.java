@@ -13,8 +13,8 @@ import lombok.Setter;
 @Alias("IndustryVO")
 @JsonInclude(Include.NON_NULL)
 public class IndustryVO {
-	private int index;
-	private String id;
+	//변수
+	private String language;
 
 	private int com_cate;
 	private String name;
@@ -35,4 +35,5 @@ public class IndustryVO {
 	private int image_y;
 	private int uid;
 	private String log;
+	
 }
