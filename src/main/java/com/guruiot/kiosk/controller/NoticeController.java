@@ -23,4 +23,26 @@ public class NoticeController {
 	public List<NoticeVO> selNotice(@RequestBody NoticeVO params) throws Exception { 
 		return noticeSVC.selNotice(params); 
 	}
+	
+	@RequestMapping(value="/notice/select_notice_count", method=RequestMethod.POST) 
+	public List<NoticeVO> selNoticeCount() throws Exception { 
+		return noticeSVC.selNoticeCount(); 
+	}
+	@RequestMapping(value="/notice/select_notice_of_lang", method=RequestMethod.POST) 
+	public List<NoticeVO> selNoticeOfLang(@RequestBody NoticeVO params) throws Exception { 
+		return noticeSVC.selNoticeOfLang(params); 
+	}
+	
+	@RequestMapping(value="/notice/insert_notice_of_lang", method=RequestMethod.POST)
+	public boolean inNoticeOfLang(@RequestBody NoticeVO params) throws Exception {
+		return noticeSVC.inNoticeOfLang(params);
+	}
+	@RequestMapping(value="/notice/update_notice_of_lang", method=RequestMethod.POST)
+	public boolean upNoticeOfLang(@RequestBody NoticeVO params) throws Exception {
+		return noticeSVC.upNoticeOfLang(params);
+	}
+	@RequestMapping(value="/notice/delete_notice_of_lang", method=RequestMethod.POST)
+	public boolean delNoticeOfLang(@RequestBody NoticeVO params) throws Exception {
+		return noticeSVC.delNoticeOfLang(params);
+	}
 }

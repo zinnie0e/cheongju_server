@@ -16,5 +16,29 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<NoticeVO> selNotice(NoticeVO params) throws Exception { 
 		return noticeDAO.selNotice(params); 
 	}
-
+	
+	@Override
+	public List<NoticeVO> selNoticeCount() throws Exception {
+		return noticeDAO.selNoticeCount(); 
+	}
+	@Override 
+	public List<NoticeVO> selNoticeOfLang(NoticeVO params) throws Exception { 
+		return noticeDAO.selNoticeOfLang(params); 
+	}
+	
+	@Override
+	public boolean inNoticeOfLang(NoticeVO params) throws Exception {
+		int quest_result = noticeDAO.inNoticeOfLang(params);
+		return (quest_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upNoticeOfLang(NoticeVO params) throws Exception {
+		int quest_result = noticeDAO.upNoticeOfLang(params);
+		return (quest_result == 1) ? true : false;
+	}
+	@Override
+	public boolean delNoticeOfLang(NoticeVO params) throws Exception {
+		int quest_result = noticeDAO.delNoticeOfLang(params);
+		return (quest_result == 1) ? true : false;
+	}
 }

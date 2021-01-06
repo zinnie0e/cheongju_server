@@ -6,4 +6,35 @@
 		SELECT *
 		FROM cheongju_kiosk1.notice_${language}
 	</select>
+	
+	<select id="selNoticeCount" resultType="noticeVO">
+		SELECT uid FROM cheongju_kiosk1.notice_kr
+	</select>
+	
+	<select id="selNoticeOfLang" resultType="noticeVO">
+		(SELECT * FROM cheongju_kiosk1.notice_kr WHERE uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.notice_en WHERE uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.notice_ch WHERE uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.notice_jp WHERE uid = #{uid})
+	</select>
+	
+	<insert id="inNoticeOfLang" parameterType="accountVO">
+		INSERT INTO cheongju_kiosk1.notice_${language} (
+			notice, log
+		) values (
+			#{notice}, now()
+		);
+	</insert>
+	
+	<update id="upNoticeOfLang" parameterType="accountVO">
+		UPDATE cheongju_kiosk1.notice_${language} SET 
+			notice = #{notice}
+		WHERE uid = #{uid}
+	</update>
+	
+	<delete id="delNoticeOfLang" parameterType="accountVO">
+		DELETE FROM cheongju_kiosk1.notice_${language} 
+		WHERE uid = #{uid}
+	</delete>
+	
 </mapper>
