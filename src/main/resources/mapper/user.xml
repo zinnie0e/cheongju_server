@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guruiot.kiosk.mapper.UserMapper">
+	
+	<select id="selCheckUser" resultType="Integer">
+		SELECT count(*) 
+		FROM cheongju_kiosk1.user_info 
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<select id="selUser" resultType="userVO">
+		SELECT *
+		FROM cheongju_kiosk1.user_info 
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<select id="selAllUser" resultType="userVO">
+		SELECT * 
+		FROM cheongju_kiosk1.user_info 
+	</select>
+	
+	<insert id="inUser" parameterType="userVO">
+		INSERT INTO cheongju_kiosk1.user_info (
+			user_id, user_pw, user_auth, user_name, log
+		) values (
+			#{user_id}, #{user_pw}, #{user_auth}, #{user_name}, now()
+		)
+	</insert>
+	
+	<update id="upUser" parameterType="userVO">
+		UPDATE cheongju_kiosk1.user_info SET 
+			user_id = #{user_id},
+			user_pw = #{user_pw},
+			user_auth = #{user_auth},
+			user_name = #{user_name}
+		WHERE uid = #{uid}
+	</update>
+	
+	<delete id="delUser" parameterType="userVO">
+		DELETE FROM cheongju_kiosk1.user_info
+		WHERE uid = #{uid}
+	</delete>
+</mapper>
