@@ -6,5 +6,12 @@
 		SELECT *
 		FROM company_${language};
 	</select>
+	
+	<select id="selIndustryList2" resultType="IndustryVO">
+		SELECT a.*, b.name AS en
+		FROM company_${language} AS a
+		LEFT JOIN company_en AS b
+		ON a.uid = b.uid
+	</select>
 
 </mapper>

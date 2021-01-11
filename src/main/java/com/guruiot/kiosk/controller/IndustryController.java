@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guruiot.kiosk.service.AccountService;
 import com.guruiot.kiosk.service.IndustryService;
-import com.guruiot.kiosk.vo.AccountVO;
 import com.guruiot.kiosk.vo.IndustryVO;
 
 @CrossOrigin(origins = "*")
@@ -24,6 +22,11 @@ public class IndustryController {
 	@RequestMapping(value = "/industry/select_industry_list", method = RequestMethod.POST)
 	public List<IndustryVO> selAccountingSlip1(@RequestBody IndustryVO params) throws Exception {
 		return IndustrySVC.selIndustryList(params);
+	}	
+	
+	@RequestMapping(value = "/industry/select_industry_list2", method = RequestMethod.POST)
+	public List<IndustryVO> selAccountingSlip2(@RequestBody IndustryVO params) throws Exception {
+		return IndustrySVC.selIndustryList2(params);
 	}	
 	
 }

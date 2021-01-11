@@ -16,7 +16,7 @@ public class IndustryVO {
 	//변수
 	private String language;
 
-	private int com_cate;
+	private String com_cate;
 	private String name;
 	private String owner;
 	private String tel;
@@ -31,9 +31,10 @@ public class IndustryVO {
 	private String item;
 	private String logo;
 	private String homepage; 
-	private int image_x;
-	private int image_y;
+	private String image_x;
+	private String image_y;
 	private int uid;
 	private String log;
+	private String en; 
 	
 }
