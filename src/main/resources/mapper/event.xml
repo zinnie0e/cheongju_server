@@ -5,6 +5,14 @@
 	<select id="selEvent" resultType="eventVO">
 		SELECT *
 		FROM cheongju_kiosk1.event_${language}
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selEventOfFound" resultType="eventVO">
+		SELECT *
+		FROM cheongju_kiosk1.event_kr
+		WHERE found_cate like #{found_val}
+		ORDER BY found_cate ASC, uid ASC
 	</select>
 	
 	<select id="selEventDetail" resultType="eventVO">
@@ -12,4 +20,70 @@
 		FROM cheongju_kiosk1.event_detail_${language}
 		WHERE event_uid = #{event_uid}
 	</select>
+	
+	<select id="selEventAllLang" resultType="eventVO">
+		(SELECT * FROM cheongju_kiosk1.event_kr where uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.event_en where uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.event_ch where uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.event_jp where uid = #{uid})
+	</select>
+	
+	<select id="selEventMaxUid" resultType="Integer">
+		SELECT max(uid)
+		FROM cheongju_kiosk1.event_kr
+	</select>
+	
+	<select id="selEventMaxCount" resultType="Integer">
+		SELECT event_count 
+		FROM cheongju_kiosk1.foundation_info 
+		WHERE found_auth = #{found_auth};
+	</select>
+	
+	<insert id="inEvent" parameterType="eventVO">
+		INSERT INTO cheongju_kiosk1.event_${language} (
+			found_cate, event_cate, title,
+			start_date, end_date, start_time, end_time, 
+			place, manager, tel, poster, uid, log
+		) VALUES (
+			#{found_cate}, #{event_cate}, #{title}, 
+			#{start_date}, #{end_date}, #{start_time}, #{end_time},
+			#{place}, #{manager}, #{tel}, #{poster}, #{uid}, now()
+		)
+	</insert>
+	
+	<insert id="inEventDetail" parameterType="eventVO">
+		INSERT INTO cheongju_kiosk1.event_detail_${language} (
+			detail_title, detail_body, event_uid, log
+		) VALUES (
+			#{detail_title}, #{detail_body}, #{event_uid}, now()
+		)
+	</insert>
+	
+	<update id="upEvent" parameterType="eventVO">
+		UPDATE cheongju_kiosk1.event_${language} SET
+			event_cate = #{event_cate}, title = #{title}, 
+			start_date = #{start_date}, end_date = #{end_date}, 
+			start_time = #{start_time}, end_time =#{end_time}, 
+			place = #{place}, manager = #{manager}, tel = #{tel}, 
+			poster = #{poster}, log = now()
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upEventDetail" parameterType="eventVO">
+		UPDATE cheongju_kiosk1.event_detail_${language} SET
+			detail_title = #{detail_title}, detail_body = #{detail_body}, 
+			log = now()
+		WHERE event_uid = #{event_uid}
+	</update>
+	
+	<delete id="delEvent" parameterType="eventVO">
+		DELETE FROM cheongju_kiosk1.event_${language}
+		WHERE uid = #{uid};
+	</delete>
+	
+	<delete id="delEventDetail" parameterType="eventVO">
+		DELETE FROM cheongju_kiosk1.event_detail_${language}
+		WHERE event_uid = #{event_uid};
+	</delete>
+	
 </mapper>

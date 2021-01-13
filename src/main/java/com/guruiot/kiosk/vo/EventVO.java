@@ -15,6 +15,7 @@ import lombok.Setter;
 public class EventVO {
 	//변수
 	private String language;
+	private String found_val;
 	
 	//공통컬럼
 	private int uid;
@@ -37,4 +38,9 @@ public class EventVO {
 	private String detail_title;
 	private String detail_body;
 	private String event_uid;
+	
+	//foundation_info
+	private int found_auth;
+	private int event_count;
+	private String found_name;
 }
