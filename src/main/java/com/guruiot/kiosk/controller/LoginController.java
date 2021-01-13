@@ -13,30 +13,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.guruiot.kiosk.SessionListener;
-import com.guruiot.kiosk.service.LoginService;
-import com.guruiot.kiosk.vo.AccountVO;
-import com.guruiot.kiosk.vo.LoginVO;
+import com.guruiot.kiosk.service.UserService;
+import com.guruiot.kiosk.vo.UserVO;
 
-@CrossOrigin(origins = "http://192.168.1.76:8088", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
 @RestController
 public class LoginController {
 	@Resource
-	private LoginService loginSVC;
+	private UserService userSVC;
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public LoginVO login(@RequestBody LoginVO params, HttpServletRequest request) throws Exception {
-		LoginVO loginVO = new LoginVO();
+	public UserVO login(@RequestBody UserVO params, HttpServletRequest request) throws Exception {
+		UserVO result_param = new UserVO();
 		
 		String result = "success";
 		
-		AccountVO get_param = loginSVC.getSelectUser(params);
+		List<UserVO> get_params = userSVC.selUser(params);
 		
 		try {
-			if(get_param != null) {
-				String user_id = get_param.getId();
-				String user_pw = get_param.getPw();
+			if(get_params != null && get_params.size() > 0) {
+				UserVO get_param = get_params.get(0);
 				
-				if(user_pw.equals(params.getPw())) {
+				String user_id = get_param.getUser_id();
+				String user_pw = get_param.getUser_pw();
+				
+				if(user_pw.equals(params.getUser_pw())) {
 					SessionListener.getInstance().printloginUsers();
 					if(SessionListener.getInstance().isUsing(user_id)) {
 						SessionListener.getInstance().removeSession(user_id);
@@ -50,9 +51,13 @@ public class LoginController {
 					session.setAttribute("JSESSIONID", request.getSession().getId());
 					
 					SessionListener.getInstance().setSession(session, user_id);
+					
+					result_param = get_param;
 				} else {
-					result = "fail";
+					result = "pwd";
 				}
+			} else {
+				result = "none";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,8 +65,8 @@ public class LoginController {
 			result = "error";
 		}
 		
-		loginVO.setResult(result);
-		return loginVO;
+		result_param.setResult(result);
+		return result_param;
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.POST)

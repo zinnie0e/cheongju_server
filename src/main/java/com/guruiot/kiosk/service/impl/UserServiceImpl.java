@@ -4,9 +4,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import com.guruiot.kiosk.service.AccountService;
 import com.guruiot.kiosk.service.UserService;
-import com.guruiot.kiosk.mapper.AccountMapper;
 import com.guruiot.kiosk.mapper.UserMapper;
 import com.guruiot.kiosk.vo.UserVO;
 

@@ -21,4 +21,6 @@ public class UserVO {
 	private int user_auth;
 	private String user_name;
 	private String log;
+	
+	private String result;
 }

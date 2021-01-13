@@ -18,7 +18,7 @@
 		(SELECT * FROM cheongju_kiosk1.notice_jp WHERE uid = #{uid})
 	</select>
 	
-	<insert id="inNoticeOfLang" parameterType="accountVO">
+	<insert id="inNoticeOfLang" parameterType="noticeVO">
 		INSERT INTO cheongju_kiosk1.notice_${language} (
 			notice, log
 		) values (
@@ -26,13 +26,13 @@
 		);
 	</insert>
 	
-	<update id="upNoticeOfLang" parameterType="accountVO">
+	<update id="upNoticeOfLang" parameterType="noticeVO">
 		UPDATE cheongju_kiosk1.notice_${language} SET 
 			notice = #{notice}
 		WHERE uid = #{uid}
 	</update>
 	
-	<delete id="delNoticeOfLang" parameterType="accountVO">
+	<delete id="delNoticeOfLang" parameterType="noticeVO">
 		DELETE FROM cheongju_kiosk1.notice_${language} 
 		WHERE uid = #{uid}
 	</delete>
