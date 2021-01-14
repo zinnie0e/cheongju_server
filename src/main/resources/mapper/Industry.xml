@@ -13,5 +13,55 @@
 		LEFT JOIN company_en AS b
 		ON a.uid = b.uid
 	</select>
+	
+	<!-- 매니저 -->
+	<select id="selIndustry" resultType="IndustryVO">
+		SELECT * 
+		FROM company_kr
+		ORDER BY (CASE 
+			WHEN ASCII(SUBSTRING(name,1)) BETWEEN 48 AND 57 THEN 3 
+			WHEN ASCII(SUBSTRING(name,1)) <![CDATA[ < ]]> 128 THEN 2 
+			ELSE 0 END), name
+	</select>
+	
+	<select id="selIndustrySearch" resultType="IndustryVO">
+		SELECT * 
+		FROM company_kr
+		WHERE (name LIKE CONCAT('%', #{name}, '%'))
+		ORDER BY (CASE 
+			WHEN ASCII(SUBSTRING(name,1)) BETWEEN 48 AND 57 THEN 3 
+			WHEN ASCII(SUBSTRING(name,1)) <![CDATA[ < ]]> 128 THEN 2 
+			ELSE 0 END), name
+	</select>
+	
+	<select id="selIndustryAllLang" resultType="IndustryVO">
+		(SELECT * FROM cheongju_kiosk1.company_kr where uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.company_en where uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.company_ch where uid = #{uid}) UNION ALL
+		(SELECT * FROM cheongju_kiosk1.company_jp where uid = #{uid})
+	</select>
+	
+	<select id="selIndustryMaxUid" resultType="Integer">
+		SELECT max(uid)
+		FROM cheongju_kiosk1.company_kr
+	</select>
+	
+	<insert id="inIndustry" parameterType="IndustryVO">
+		INSERT INTO cheongju_kiosk1.company_${language} (
+			com_cate, name, owner, tel, email, flow, room, 
+			busi1, busi2, busi3, busi4, busi5, 
+			item, logo, homepage, image_x, image_y, log
+		) VALUES (
+			#{com_cate}, #{name}, #{owner}, #{tel}, #{email}, #{flow} #{room}, 
+			#{busi1}, #{busi2}, #{busi3}, #{busi4}, #{busi5}, 
+			#{item}, #{logo}, #{homepage}, #{image_x}, #{image_y}, now()
+		)
+	</insert>
+	
+	<update id="upIndustry" parameterType="IndustryVO">
+	</update>
+	
+	<delete id="delIndustry" parameterType="IndustryVO">
+	</delete>
 
 </mapper>
