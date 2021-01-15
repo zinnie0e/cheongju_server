@@ -46,6 +46,10 @@ public class EventController {
 	public int selEventMaxCount(@RequestBody EventVO params) throws Exception {
 		return eventSVC.selEventMaxCount(params);
 	}
+	@RequestMapping(value="/event/select_event_promotion", method=RequestMethod.POST) 
+	public List<EventVO> selEventPoster() throws Exception { 
+		return eventSVC.selEventPoster(); 
+	}
 	
 	@RequestMapping(value="/event/insert_event", method=RequestMethod.POST)
 	public boolean inEvent(@RequestBody EventVO params) throws Exception {

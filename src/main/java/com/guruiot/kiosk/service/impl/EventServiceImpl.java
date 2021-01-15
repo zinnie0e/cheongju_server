@@ -28,6 +28,7 @@ public class EventServiceImpl implements EventService{
 	public List<EventVO> selEventAllLang(EventVO params) throws Exception { 
 		return eventDAO.selEventAllLang(params); 
 	}
+	
 	@Override
 	public int selEventMaxUid() throws Exception {
 		Integer get_param = eventDAO.selEventMaxUid();
@@ -40,6 +41,11 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public int selEventMaxCount(EventVO params) throws Exception {
 		return eventDAO.selEventMaxCount(params);
+	}
+	
+	@Override 
+	public List<EventVO> selEventPoster() throws Exception { 
+		return eventDAO.selEventPoster(); 
 	}
 
 	@Override

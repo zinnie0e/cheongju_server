@@ -11,6 +11,7 @@ public interface EventService {
 	List<EventVO> selEventAllLang(EventVO params) throws Exception;
 	int selEventMaxUid() throws Exception;
 	int selEventMaxCount(EventVO params) throws Exception;
+	List<EventVO> selEventPoster() throws Exception;
 	
 	boolean inEvent(EventVO params) throws Exception;
 	boolean inEventDetail(EventVO params) throws Exception;

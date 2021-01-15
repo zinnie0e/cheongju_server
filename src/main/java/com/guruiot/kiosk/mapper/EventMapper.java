@@ -13,6 +13,7 @@ public interface EventMapper {
 	public List<EventVO> selEventAllLang(EventVO params) throws Exception;
 	public Integer selEventMaxUid() throws Exception;
 	public Integer selEventMaxCount(EventVO params) throws Exception;
+	public List<EventVO> selEventPoster() throws Exception;
 	
 	public int inEvent(EventVO params) throws Exception;
 	public int inEventDetail(EventVO params) throws Exception;

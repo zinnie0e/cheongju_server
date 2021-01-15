@@ -19,6 +19,9 @@ public class WonderVO {
 	private String shop_cate;
 	private String name;
 	private String logo;
+	private String start_time;
+	private String end_time;
+	private String tel;
 	private int flow;
 	private String room;
 	private int image_x;

@@ -39,6 +39,12 @@
 		WHERE found_auth = #{found_auth};
 	</select>
 	
+	<select id="selEventPoster" resultType="eventVO">
+		SELECT poster
+		FROM cheongju_kiosk1.event_kr
+		ORDER BY uid ASC
+	</select>
+	
 	<insert id="inEvent" parameterType="eventVO">
 		INSERT INTO cheongju_kiosk1.event_${language} (
 			found_cate, event_cate, title,
