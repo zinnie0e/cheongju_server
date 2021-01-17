@@ -1,5 +1,8 @@
 package com.guruiot.kiosk.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,10 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.guruiot.kiosk.service.IndustryService;
-import com.guruiot.kiosk.vo.EventVO;
 import com.guruiot.kiosk.vo.IndustryVO;
 
 @CrossOrigin(origins = "*")
@@ -57,6 +62,51 @@ public class IndustryController {
 	@RequestMapping(value="/industry/delete_company", method=RequestMethod.POST)
 	public boolean delIndustry(@RequestBody IndustryVO params) throws Exception {
 		return industrySVC.delIndustry(params);
+	}
+	
+	//@RequestMapping(value="/industry/upload_logo", method=RequestMethod.POST)
+	//public boolean testUpload(@RequestParam MultipartFile files) throws Exception {
+	//	boolean result = false;
+	//	try {
+	//		String dir = "C:/";
+	//		String path = dir + "/external_image/com_logo/" + files.getOriginalFilename();
+	//		
+	//		System.out.println(files.getOriginalFilename());
+	//		System.out.println(path);
+	//		
+	//		files.transferTo(new File(path));
+	//		
+	//		result = true;
+	//	} catch(Exception e) {
+	//		e.printStackTrace();
+	//	}
+	//	return result;
+	//}
+	
+	@RequestMapping(value="/industry/upload_logo", method=RequestMethod.POST)
+	public String testUpload(MultipartHttpServletRequest request) throws Exception {
+		String result = "";
+		try {
+			MultipartFile files =  request.getFile("files");
+			String namecode =  request.getParameter("namecode");
+			
+			String dirPath = "C://Program Files/Apache Software Foundation/Tomcat 8.5/webapps/external_image/com_logo/";
+			
+		    String orgName = files.getOriginalFilename();
+		    String exc = orgName.substring(orgName.lastIndexOf(".") + 1, orgName.length());
+		    
+		    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		    Date nowDate = new Date();
+		    String dateString = formatter.format(nowDate);
+		    
+		    String newName = namecode + "_" + dateString + "." + exc;
+			
+			files.transferTo(new File(dirPath + newName));
+			result = newName;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }

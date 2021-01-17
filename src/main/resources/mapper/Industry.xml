@@ -50,18 +50,26 @@
 		INSERT INTO cheongju_kiosk1.company_${language} (
 			com_cate, name, owner, tel, email, flow, room, 
 			busi1, busi2, busi3, busi4, busi5, 
-			item, logo, homepage, image_x, image_y, log
+			item, logo, homepage, image_x, image_y, uid, log
 		) VALUES (
-			#{com_cate}, #{name}, #{owner}, #{tel}, #{email}, #{flow} #{room}, 
+			#{com_cate}, #{name}, #{owner}, #{tel}, #{email}, #{flow}, #{room}, 
 			#{busi1}, #{busi2}, #{busi3}, #{busi4}, #{busi5}, 
-			#{item}, #{logo}, #{homepage}, #{image_x}, #{image_y}, now()
+			#{item}, #{logo}, #{homepage}, #{image_x}, #{image_y}, #{uid}, now()
 		)
 	</insert>
 	
 	<update id="upIndustry" parameterType="IndustryVO">
+		UPDATE cheongju_kiosk1.company_${language} SET
+			com_cate = #{com_cate}, name = #{name}, owner = #{owner}, tel = #{tel}, 
+			email = #{email}, flow =#{flow}, room = #{room}, 
+            busi1 = #{busi1}, busi2 = #{busi2}, busi3 = #{busi3}, busi4 = #{busi4}, busi5 = #{busi5}, 
+			logo = #{logo}, homepage = #{homepage}, image_x = #{image_x}, image_y = #{image_y}, log = now()
+		WHERE uid = #{uid}
 	</update>
 	
 	<delete id="delIndustry" parameterType="IndustryVO">
+		DELETE FROM cheongju_kiosk1.company_${language}
+		WHERE uid = #{uid}
 	</delete>
 
 </mapper>

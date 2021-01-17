@@ -2,6 +2,9 @@ package com.guruiot.kiosk.controller;
 
 import java.io.File;
 import java.util.List;
+import java.io.*;
+import java.util.*;
+import java.text.*;
 
 import javax.annotation.Resource;
 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.guruiot.kiosk.service.EventService;
 import com.guruiot.kiosk.vo.EventVO;
@@ -50,7 +54,6 @@ public class EventController {
 	public List<EventVO> selEventPoster() throws Exception { 
 		return eventSVC.selEventPoster(); 
 	}
-	
 	@RequestMapping(value="/event/insert_event", method=RequestMethod.POST)
 	public boolean inEvent(@RequestBody EventVO params) throws Exception {
 		return eventSVC.inEvent(params);
@@ -76,20 +79,27 @@ public class EventController {
 		return eventSVC.delEventDetail(params);
 	}
 	
-	
+ 
 	@RequestMapping(value="/event/upload_poster", method=RequestMethod.POST)
-	public boolean testUpload(@RequestParam MultipartFile files) throws Exception {
-		boolean result = false;
+	public String testUpload(MultipartHttpServletRequest request) throws Exception {
+		String result = "";
 		try {
-			String dir = "C:/";
-			String path = dir + "/external_image/promotion/" + files.getOriginalFilename();
+			MultipartFile files =  request.getFile("files");
+			String namecode =  request.getParameter("namecode");
 			
-			System.out.println(files.getOriginalFilename());
-			System.out.println(path);
+			String dirPath = "C://Program Files/Apache Software Foundation/Tomcat 8.5/webapps/external_image/promotion/";
 			
-			files.transferTo(new File(path));
+		    String orgName = files.getOriginalFilename();
+		    String exc = orgName.substring(orgName.lastIndexOf(".") + 1, orgName.length());
+		    
+		    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		    Date nowDate = new Date();
+		    String dateString = formatter.format(nowDate);
+		    
+		    String newName = namecode + "_" + dateString + "." + exc;
 			
-			result = true;
+			files.transferTo(new File(dirPath + newName));
+			result = newName;
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
