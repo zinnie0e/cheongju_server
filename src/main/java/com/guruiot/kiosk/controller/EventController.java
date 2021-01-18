@@ -91,12 +91,9 @@ public class EventController {
 			
 		    String orgName = files.getOriginalFilename();
 		    String exc = orgName.substring(orgName.lastIndexOf(".") + 1, orgName.length());
+		   
 		    
-		    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-		    Date nowDate = new Date();
-		    String dateString = formatter.format(nowDate);
-		    
-		    String newName = namecode + "_" + dateString + "." + exc;
+		    String newName = namecode + "." + exc;
 			
 			files.transferTo(new File(dirPath + newName));
 			result = newName;
