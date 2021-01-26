@@ -36,5 +36,7 @@ public class IndustryVO {
 	private int uid;
 	private String log;
 	private String en; 
+	private String name_size; 
+	private String name_sort; 
 	
 }

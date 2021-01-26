@@ -33,6 +33,10 @@ public class IndustryController {
 	public List<IndustryVO> selAccountingSlip2(@RequestBody IndustryVO params) throws Exception {
 		return industrySVC.selIndustryList2(params);
 	}	
+	@RequestMapping(value = "/industry/select_industry_sort_list", method = RequestMethod.POST)
+	public List<IndustryVO> selIndustrySortList(@RequestBody IndustryVO params) throws Exception {
+		return industrySVC.selIndustrySortList(params);
+	}	
 	
 	@RequestMapping(value = "/industry/select_industry", method = RequestMethod.POST)
 	public List<IndustryVO> selIndustry() throws Exception {

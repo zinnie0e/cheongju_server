@@ -10,6 +10,7 @@ import com.guruiot.kiosk.vo.IndustryVO;
 	public interface IndustryMapper {
 		public List<IndustryVO> selIndustryList(IndustryVO params);
 		public List<IndustryVO> selIndustryList2(IndustryVO params);
+		public List<IndustryVO> selIndustrySortList(IndustryVO params);
 		
 		public List<IndustryVO> selIndustry();
 		public List<IndustryVO> selIndustrySearch(IndustryVO params);

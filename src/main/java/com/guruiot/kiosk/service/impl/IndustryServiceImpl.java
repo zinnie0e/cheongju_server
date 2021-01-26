@@ -21,6 +21,10 @@ public class IndustryServiceImpl implements IndustryService{
 	public List<IndustryVO> selIndustryList2(IndustryVO params) throws Exception {
 		return industryDAO.selIndustryList2(params);
 	}
+	@Override
+	public List<IndustryVO> selIndustrySortList(IndustryVO params) throws Exception {
+		return industryDAO.selIndustrySortList(params);
+	}
 	
 	@Override
 	public List<IndustryVO> selIndustry() throws Exception {
