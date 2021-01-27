@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guruiot.kiosk.mapper.NetworkMapper">	
+	<select id="selAllNetwork" resultType="NetworkVO">
+		SELECT * 
+		FROM cheongju_kiosk1.network_check
+	</select>
+	
+	<insert id="inNetwork" parameterType="NetworkVO">
+		INSERT INTO cheongju_kiosk1.network_check (
+			online, log
+		) values (
+			#{online}, now()
+		)
+	</insert>
+	
+	<delete id="delNetwork" parameterType="NetworkVO">
+		DELETE FROM cheongju_kiosk1.network_check
+		WHERE log <![CDATA[<]]> now() <![CDATA[-]]> INTERVAL 8 DAY
+	</delete>
+</mapper>
