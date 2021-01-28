@@ -4,12 +4,12 @@
 
 	<select id="selIndustryList" resultType="IndustryVO">
 		SELECT *
-		FROM company_${language};
+		FROM cheongju_kiosk1.company_${language};
 	</select>
 	
 	<select id="selIndustryList2" resultType="IndustryVO">
 		SELECT a.*, b.name AS en
-		FROM company_${language} AS a
+		FROM cheongju_kiosk1.company_${language} AS a
 		LEFT JOIN company_en AS b
 		ON a.uid = b.uid
 	</select>
@@ -24,7 +24,7 @@
 	<!-- 매니저 -->
 	<select id="selIndustry" resultType="IndustryVO">
 		SELECT * 
-		FROM company_kr
+		FROM cheongju_kiosk1.company_kr
 		ORDER BY (CASE 
 			WHEN ASCII(SUBSTRING(name,1)) BETWEEN 48 AND 57 THEN 3 
 			WHEN ASCII(SUBSTRING(name,1)) <![CDATA[ < ]]> 128 THEN 2 
@@ -33,7 +33,7 @@
 	
 	<select id="selIndustrySearch" resultType="IndustryVO">
 		SELECT * 
-		FROM company_kr
+		FROM cheongju_kiosk1.company_kr
 		WHERE (name LIKE CONCAT('%', #{name}, '%'))
 		ORDER BY (CASE 
 			WHEN ASCII(SUBSTRING(name,1)) BETWEEN 48 AND 57 THEN 3 
