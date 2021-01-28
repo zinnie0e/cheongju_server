@@ -15,6 +15,7 @@ import lombok.Setter;
 public class IndustryVO {
 	//변수
 	private String language;
+	private String column;
 
 	private String com_cate;
 	private String name;

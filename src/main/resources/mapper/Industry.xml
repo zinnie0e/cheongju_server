@@ -18,7 +18,7 @@
 		SELECT * 
 		FROM cheongju_kiosk1.company_${language}
 		WHERE name_sort = #{name_sort} 
-		ORDER BY name ASC;
+		ORDER BY ${column} ASC;
 	</select>
 	
 	<!-- 매니저 -->
@@ -69,7 +69,7 @@
 		UPDATE cheongju_kiosk1.company_${language} SET
 			com_cate = #{com_cate}, name = #{name}, owner = #{owner}, tel = #{tel}, 
 			email = #{email}, flow =#{flow}, room = #{room}, 
-            busi1 = #{busi1}, busi2 = #{busi2}, busi3 = #{busi3}, busi4 = #{busi4}, busi5 = #{busi5}, 
+            busi1 = #{busi1}, busi2 = #{busi2}, busi3 = #{busi3}, busi4 = #{busi4}, busi5 = #{busi5}, item = #{item},
 			logo = #{logo}, homepage = #{homepage}, image_x = #{image_x}, image_y = #{image_y}, log = now(), name_size = #{name_size}, name_sort = #{name_sort}
 		WHERE uid = #{uid}
 	</update>

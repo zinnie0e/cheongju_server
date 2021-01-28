@@ -3,11 +3,11 @@
 <mapper namespace="com.guruiot.kiosk.mapper.NetworkMapper">	
 	<select id="selAllNetwork" resultType="NetworkVO">
 		SELECT * 
-		FROM cheongju_kiosk1.network_check
+		FROM network_check.online_check
 	</select>
 	
 	<insert id="inNetwork" parameterType="NetworkVO">
-		INSERT INTO cheongju_kiosk1.network_check (
+		INSERT INTO network_check.online_check (
 			online, log
 		) values (
 			#{online}, now()
@@ -15,7 +15,7 @@
 	</insert>
 	
 	<delete id="delNetwork" parameterType="NetworkVO">
-		DELETE FROM cheongju_kiosk1.network_check
+		DELETE FROM network_check.online_check
 		WHERE log <![CDATA[<]]> now() <![CDATA[-]]> INTERVAL 8 DAY
 	</delete>
 </mapper>
