@@ -19,6 +19,11 @@ public class NetworkController {
 	@Resource
 	private NetworkService networkSVC;
 	
+	@RequestMapping(value="/network/select_network_count", method=RequestMethod.POST)
+	public int selNetworkCount() throws Exception {
+		return networkSVC.selNetworkCount();
+	}
+	
 	@RequestMapping(value="/network/select_all_network", method=RequestMethod.POST)
 	public List<NetworkVO> selAllNetwork() throws Exception {
 		

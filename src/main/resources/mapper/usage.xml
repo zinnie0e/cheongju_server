@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guruiot.kiosk.mapper.UsageMapper">	
+
+	<select id="selAllCountUsage" resultType="UsageVO">
+		SELECT sum(event_cnt) AS event_cnt, 
+			sum(industry_cnt) AS industry_cnt, 
+			sum(wonder_cnt) AS wonder_cnt, 
+			sum(craft_cnt) AS craft_cnt, 
+			sum(library_cnt) AS library_cnt, 
+			sum(media_cnt) AS media_cnt, 
+		    sum(foundation_cnt) AS foundation_cnt,  
+		    sum(museum_cnt) AS museum_cnt, 
+		    sum(dongbu_cnt) AS dongbu_cnt, 
+		    sum(parking_cnt) AS parking_cnt, 
+		    sum(hours_cnt)  AS hours_cnt
+		FROM cheongju_kiosk1.usage_stt;
+	</select>
+	
+	<select id="selAllUsage" resultType="UsageVO">
+		SELECT * 
+		FROM cheongju_kiosk1.usage_stt
+	</select>
+	
+	<select id="selUsage" resultType="UsageVO">
+		SELECT * 
+		FROM cheongju_kiosk1.usage_stt 
+		WHERE date = #{date}
+	</select>
+	
+	<select id="selUsageDayList" resultType="UsageVO">
+		SELECT date
+		FROM cheongju_kiosk1.usage_stt 
+        WHERE date LIKE CONCAT(#{date}, '%')
+	</select>
+	
+	<insert id="inUsage" parameterType="UsageVO">
+		INSERT INTO cheongju_kiosk1.usage_stt (
+			date
+		) VALUES (
+			#{date}
+		)
+	</insert>
+	
+	<update id="upUsage" parameterType="UsageVO">
+		update cheongju_kiosk1.usage_stt set
+			event_cnt = #{event_cnt}, 
+			industry_cnt = #{industry_cnt}, 
+			wonder_cnt = #{wonder_cnt}, 
+			craft_cnt = #{craft_cnt}, 
+			library_cnt = #{library_cnt}, 
+			media_cnt = #{media_cnt}, 
+			foundation_cnt = #{foundation_cnt}, 
+			museum_cnt = #{museum_cnt}, 
+			dongbu_cnt = #{dongbu_cnt}, 
+			parking_cnt = #{parking_cnt}, 
+			hours_cnt = #{hours_cnt}
+		WHERE date = #{date}
+	</update>
+</mapper>

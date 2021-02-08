@@ -10,7 +10,7 @@
 	<select id="selIndustryList2" resultType="IndustryVO">
 		SELECT a.*, b.name AS en
 		FROM cheongju_kiosk1.company_${language} AS a
-		LEFT JOIN company_en AS b
+			LEFT JOIN cheongju_kiosk1.company_en AS b
 		ON a.uid = b.uid
 	</select>
 	

@@ -14,6 +14,11 @@ public class NetworkServiceImpl implements NetworkService{
 	private NetworkMapper networkDAO;
 	
 	@Override
+	public int selNetworkCount() throws Exception {
+		return networkDAO.selNetworkCount();
+	}
+	
+	@Override
 	public List<NetworkVO> selAllNetwork() throws Exception {
 		return networkDAO.selAllNetwork();
 	}

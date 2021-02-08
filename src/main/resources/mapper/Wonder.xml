@@ -4,7 +4,7 @@
 
 	<select id="selWonderList" resultType="WonderVO">
 		SELECT *
-		FROM wonder_${language};
+		FROM cheongju_kiosk1.wonder_${language};
 	</select>
 
 </mapper>

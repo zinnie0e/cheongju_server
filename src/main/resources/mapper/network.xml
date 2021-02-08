@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guruiot.kiosk.mapper.NetworkMapper">	
+	<select id="selNetworkCount" resultType="Integer">
+		SELECT count(*)
+		FROM network_check.online_check
+	</select>
+	
 	<select id="selAllNetwork" resultType="NetworkVO">
 		SELECT * 
 		FROM network_check.online_check

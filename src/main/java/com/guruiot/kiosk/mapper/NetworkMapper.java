@@ -7,6 +7,7 @@ import com.guruiot.kiosk.vo.NetworkVO;
 @Mapper
 public interface NetworkMapper {
 	
+	public Integer selNetworkCount() throws Exception;
 	public List<NetworkVO> selAllNetwork() throws Exception;
 	
 	public int inNetwork(NetworkVO params) throws Exception;
