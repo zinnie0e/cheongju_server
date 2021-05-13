@@ -60,6 +60,7 @@ public class UsageController {
 			params.setDongbu_cnt(params.getDongbu_cnt() + origin_list.getDongbu_cnt());
 			params.setParking_cnt(params.getParking_cnt() + origin_list.getParking_cnt());
 			params.setHours_cnt(params.getHours_cnt() + origin_list.getHours_cnt());
+			params.setTour_cnt(params.getTour_cnt() + origin_list.getTour_cnt());
 		}
 		return usageSVC.upUsage(params);
 	}

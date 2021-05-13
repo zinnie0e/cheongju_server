@@ -27,4 +27,5 @@ public class UsageVO {
 	private long dongbu_cnt;
 	private long parking_cnt;
 	private long hours_cnt;
+	private long tour_cnt;
 }

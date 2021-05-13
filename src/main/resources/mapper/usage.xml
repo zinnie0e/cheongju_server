@@ -13,7 +13,8 @@
 		    sum(museum_cnt) AS museum_cnt, 
 		    sum(dongbu_cnt) AS dongbu_cnt, 
 		    sum(parking_cnt) AS parking_cnt, 
-		    sum(hours_cnt)  AS hours_cnt
+		    sum(hours_cnt)  AS hours_cnt,
+		    sum(tour_cnt)  AS tour_cnt
 		FROM cheongju_kiosk1.usage_stt;
 	</select>
 	
@@ -54,7 +55,8 @@
 			museum_cnt = #{museum_cnt}, 
 			dongbu_cnt = #{dongbu_cnt}, 
 			parking_cnt = #{parking_cnt}, 
-			hours_cnt = #{hours_cnt}
+			hours_cnt = #{hours_cnt},
+			tour_cnt = #{tour_cnt}
 		WHERE date = #{date}
 	</update>
 </mapper>
